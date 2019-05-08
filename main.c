@@ -1,43 +1,27 @@
 #include <stdio.h>
 
-
 int main(){
-    int arrX = 3, arrY = 3; //arrayData row and col size 
-    int arrayData[arrX][arrY]; //array used for data storage
-    int row, col; 
-    int max = 0;
-    FILE *input; //File input pointer
-    input = fopen("input.txt", "r"); //input is read from file
+    int arrayData[3][3];
+    int row, col, max = 0, xloc, yloc;
+    FILE *input;
+    input = fopen("input.txt", "r");
     
-    //scans input file for integers and stores then in a 3x3 array
-    for(row = 0; row < arrX; row++){
-        for(col = 0; col < arrY; col++){
-            
-        fscanf(input,"%d", &arrayData[row][col]);
-        
+    for(row = 0; row < 3; row++){
+        for(col = 0; col < 3; col++){
+            fscanf(input, "%d", &arrayData[row][col]);
         }
     }
-    
-    //prints array
-    for(row = 0; row < arrX; row++){
-        for(col = 0; col < arrY; col++){
-            
-        printf("%d ", arrayData[row][col]);
-        }
-        printf("\n");
-    }
-    
-    //finds and records max value in array
-    for(row = 0; row < arrX; row++){
-        for(col = 0; col < arrY; col++){
-          
+    for(row = 0; row < 3; row++){
+        for(col = 0; col < 3; col++){
             if(arrayData[row][col] > max){
                 max = arrayData[row][col];
-            } 
-        } 
+                xloc = col+1;
+                yloc = row+1;
+            }
+        }
     }
-    printf("\nmax value in 3x3 array is %d\n", max);
-    
+    printf("\nmax value in array is %d, and it located at (%d)(%d)\n", max, xloc, yloc);
+        
     fclose(input);
     
     return 0;
